@@ -71,7 +71,9 @@
  *
  * Used to do RSA encryption.
  */
-require_once('Math/BigInteger.php');
+if (!class_exists('Math_BigInteger')) {
+    require_once('Math/BigInteger.php');
+}
 
 /**
  * Include Crypt_Null
@@ -81,22 +83,34 @@ require_once('Math/BigInteger.php');
 /**
  * Include Crypt_DES
  */
-require_once('Crypt/DES.php');
+if (!class_exists('Crypt_DES')) {
+    require_once('Crypt/DES.php');
+}
 
 /**
  * Include Crypt_TripleDES
  */
-require_once('Crypt/TripleDES.php');
+if (!class_exists('Crypt_TripleDES')) {
+    require_once('Crypt/TripleDES.php');
+}
 
 /**
  * Include Crypt_RC4
  */
-require_once('Crypt/RC4.php');
+if (!class_exists('Crypt_RC4')) {
+    require_once('Crypt/RC4.php');
+}
 
 /**
  * Include Crypt_Random
  */
-require_once('Crypt/Random.php');
+// the class_exists() will only be called if the crypt_random function hasn't been defined and
+// will trigger a call to __autoload() if you're wanting to auto-load classes
+// call function_exists() a second time to stop the require_once from being called outside
+// of the auto loader
+if (!function_exists('crypt_random') && !class_exists('Crypt_Random') && !function_exists('crypt_random')) {
+    require_once('Crypt/Random.php');
+}
 
 /**#@+
  * Encryption Methods
@@ -414,7 +428,7 @@ class Net_SSH1 {
      * @var Array
      * @access private
      */
-    var $interactive_buffer = '';
+    var $interactiveBuffer = '';
 
     /**
      * Default Constructor.
@@ -1405,4 +1419,3 @@ class Net_SSH1 {
         return rtrim($this->server_identification);
     }
 }
-?>
