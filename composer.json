@@ -1,0 +1,36 @@
+{
+	"name":"menatwork/phpseclib",
+	"description":"PHP Secure Communications Library for Contao",
+	"keywords":["security", "encryption", "aes"],
+	"type":"contao-library",
+	"license":"MIT",
+	"authors":[
+		{
+			"name":"Andreas Isaak",
+			"email":"isaak@men-at-work.de",
+			"homepage":"http://www.men-at-work.de",
+			"role":"Project leader"
+		},
+		{
+			"name":"Stefan Heimes",
+			"email":"heimes@men-at-work.de",
+			"homepage":"http://www.men-at-work.de",
+			"role":"Developer"
+		},
+		{
+			"name": "Jim Wigginton",
+			"email": "terrafrost@php.net",
+			"role": "Original developer"
+		}
+	],
+	"require":{
+		"php:":">=5.0.0"
+	},
+	"extra":{
+		"contao": {
+			"symlinks":{
+				"system/modules/phpseclib": "system/modules/phpseclib"
+			}
+		}
+	}
+}
