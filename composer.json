@@ -6,21 +6,15 @@
 	"license":"MIT",
 	"authors":[
 		{
-			"name":"Andreas Isaak",
-			"email":"isaak@men-at-work.de",
-			"homepage":"http://www.men-at-work.de",
-			"role":"Project leader"
+			"name": "Jim Wigginton",
+			"email": "terrafrost@php.net",
+			"role": "Original developer"
 		},
 		{
 			"name":"Stefan Heimes",
 			"email":"heimes@men-at-work.de",
 			"homepage":"http://www.men-at-work.de",
 			"role":"Developer"
-		},
-		{
-			"name": "Jim Wigginton",
-			"email": "terrafrost@php.net",
-			"role": "Original developer"
 		}
 	],
 	"require":{
