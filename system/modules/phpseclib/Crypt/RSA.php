@@ -72,9 +72,7 @@
 /**
  * Include Math_BigInteger
  */
-if (!class_exists('Math_BigInteger')) {
-    require_once('Math/BigInteger.php');
-}
+require_once('Math/BigInteger.php');
 
 /**
  * Include Crypt_Random
@@ -83,16 +81,14 @@ if (!class_exists('Math_BigInteger')) {
 // will trigger a call to __autoload() if you're wanting to auto-load classes
 // call function_exists() a second time to stop the require_once from being called outside
 // of the auto loader
-if (!function_exists('crypt_random') && !class_exists('Crypt_Random') && !function_exists('crypt_random')) {
+if (!function_exists('crypt_random') && !function_exists('crypt_random')) {
     require_once('Crypt/Random.php');
 }
 
 /**
  * Include Crypt_Hash
  */
-if (!class_exists('Crypt_Hash')) {
-    require_once('Crypt/Hash.php');
-}
+require_once('Crypt/Hash.php');
 
 /**#@+
  * @access public
@@ -724,9 +720,7 @@ class Crypt_RSA {
                 } else {
                     $private.= $this->_random(16 - (strlen($private) & 15));
                     $source.= pack('Na*', strlen($private), $private);
-                    if (!class_exists('Crypt_AES')) {
-                        require_once('Crypt/AES.php');
-                    }
+                    require_once('Crypt/AES.php');
                     $sequence = 0;
                     $symkey = '';
                     while (strlen($symkey) < 32) {
@@ -745,9 +739,7 @@ class Crypt_RSA {
                 $private = base64_encode($private);
                 $key.= 'Private-Lines: ' . ((strlen($private) + 32) >> 6) . "\r\n";
                 $key.= chunk_split($private, 64);
-                if (!class_exists('Crypt_Hash')) {
-                    require_once('Crypt/Hash.php');
-                }
+                require_once('Crypt/Hash.php');
                 $hash = new Crypt_Hash('sha1');
                 $hash->setKey(pack('H*', sha1($hashkey)));
                 $key.= 'Private-MAC: ' . bin2hex($hash->hash($source)) . "\r\n";
@@ -785,9 +777,7 @@ class Crypt_RSA {
                     $iv = $this->_random(8);
                     $symkey = pack('H*', md5($this->password . $iv)); // symkey is short for symmetric key
                     $symkey.= substr(pack('H*', md5($symkey . $this->password . $iv)), 0, 8);
-                    if (!class_exists('Crypt_TripleDES')) {
-                        require_once('Crypt/TripleDES.php');
-                    }
+                    require_once('Crypt/TripleDES.php');
                     $des = new Crypt_TripleDES();
                     $des->setKey($symkey);
                     $des->setIV($iv);
@@ -951,28 +941,20 @@ class Crypt_RSA {
                     }
                     switch ($matches[1]) {
                         case 'AES-128-CBC':
-                            if (!class_exists('Crypt_AES')) {
-                                require_once('Crypt/AES.php');
-                            }
+                            require_once('Crypt/AES.php');
                             $symkey = substr($symkey, 0, 16);
                             $crypto = new Crypt_AES();
                             break;
                         case 'DES-EDE3-CFB':
-                            if (!class_exists('Crypt_TripleDES')) {
-                                require_once('Crypt/TripleDES.php');
-                            }
+                            require_once('Crypt/TripleDES.php');
                             $crypto = new Crypt_TripleDES(CRYPT_DES_MODE_CFB);
                             break;
                         case 'DES-EDE3-CBC':
-                            if (!class_exists('Crypt_TripleDES')) {
-                                require_once('Crypt/TripleDES.php');
-                            }
+                            require_once('Crypt/TripleDES.php');
                             $crypto = new Crypt_TripleDES();
                             break;
                         case 'DES-CBC':
-                            if (!class_exists('Crypt_DES')) {
-                                require_once('Crypt/DES.php');
-                            }
+                            require_once('Crypt/DES.php');
                             $crypto = new Crypt_DES();
                             break;
                         default:
@@ -1176,9 +1158,7 @@ class Crypt_RSA {
 
                 switch ($encryption) {
                     case 'aes256-cbc':
-                        if (!class_exists('Crypt_AES')) {
-                            require_once('Crypt/AES.php');
-                        }
+                        require_once('Crypt/AES.php');
                         $symkey = '';
                         $sequence = 0;
                         while (strlen($symkey) < 32) {
@@ -1564,7 +1544,7 @@ class Crypt_RSA {
      * DER-decode the length
      *
      * DER supports lengths up to (2**8)**127, however, we'll only support lengths up to (2**8)**4.  See
-     * {@link http://itu.int/ITU-T/studygroups/com17/languages/X.690-0207.pdf#p=13 X.690 § 8.1.3} for more information.
+     * {@link http://itu.int/ITU-T/studygroups/com17/languages/X.690-0207.pdf#p=13 X.690 ï¿½ 8.1.3} for more information.
      *
      * @access private
      * @param String $string
@@ -1585,7 +1565,7 @@ class Crypt_RSA {
      * DER-encode the length
      *
      * DER supports lengths up to (2**8)**127, however, we'll only support lengths up to (2**8)**4.  See
-     * {@link http://itu.int/ITU-T/studygroups/com17/languages/X.690-0207.pdf#p=13 X.690 § 8.1.3} for more information.
+     * {@link http://itu.int/ITU-T/studygroups/com17/languages/X.690-0207.pdf#p=13 X.690 ï¿½ 8.1.3} for more information.
      *
      * @access private
      * @param Integer $length
@@ -1872,7 +1852,7 @@ class Crypt_RSA {
      *
      * Protects against a particular type of timing attack described.
      *
-     * See {@link http://codahale.com/a-lesson-in-timing-attacks/ A Lesson In Timing Attacks (or, Don’t use MessageDigest.isEquals)}
+     * See {@link http://codahale.com/a-lesson-in-timing-attacks/ A Lesson In Timing Attacks (or, Donï¿½t use MessageDigest.isEquals)}
      *
      * Thanks for the heads up singpolyma!
      *

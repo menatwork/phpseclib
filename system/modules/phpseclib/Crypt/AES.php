@@ -66,9 +66,8 @@
 /**
  * Include Crypt_Rijndael
  */
-if (!class_exists('Crypt_Rijndael')) {
-    require_once 'Rijndael.php';
-}
+require_once 'Rijndael.php';
+
 
 /**#@+
  * @access public

@@ -71,9 +71,7 @@
  *
  * Used to do RSA encryption.
  */
-if (!class_exists('Math_BigInteger')) {
-    require_once('Math/BigInteger.php');
-}
+require_once('Math/BigInteger.php');
 
 /**
  * Include Crypt_Null
@@ -83,23 +81,17 @@ if (!class_exists('Math_BigInteger')) {
 /**
  * Include Crypt_DES
  */
-if (!class_exists('Crypt_DES')) {
-    require_once('Crypt/DES.php');
-}
+require_once('Crypt/DES.php');
 
 /**
  * Include Crypt_TripleDES
  */
-if (!class_exists('Crypt_TripleDES')) {
-    require_once('Crypt/TripleDES.php');
-}
+require_once('Crypt/TripleDES.php');
 
 /**
  * Include Crypt_RC4
  */
-if (!class_exists('Crypt_RC4')) {
-    require_once('Crypt/RC4.php');
-}
+require_once('Crypt/RC4.php');
 
 /**
  * Include Crypt_Random
@@ -108,7 +100,7 @@ if (!class_exists('Crypt_RC4')) {
 // will trigger a call to __autoload() if you're wanting to auto-load classes
 // call function_exists() a second time to stop the require_once from being called outside
 // of the auto loader
-if (!function_exists('crypt_random') && !class_exists('Crypt_Random') && !function_exists('crypt_random')) {
+if (!function_exists('crypt_random') && !function_exists('crypt_random')) {
     require_once('Crypt/Random.php');
 }
 
@@ -1187,9 +1179,7 @@ class Net_SSH1 {
     function _rsa_crypt($m, $key)
     {
         /*
-        if (!class_exists('Crypt_RSA')) {
-            require_once('Crypt/RSA.php');
-        }
+        require_once('Crypt/RSA.php');
 
         $rsa = new Crypt_RSA();
         $rsa->loadKey($key, CRYPT_RSA_PUBLIC_FORMAT_RAW);

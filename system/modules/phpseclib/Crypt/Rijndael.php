@@ -609,9 +609,7 @@ class Crypt_Rijndael {
                     $count = 1000;
                 }
 
-                if (!class_exists('Crypt_Hash')) {
-                    require_once('Crypt/Hash.php');
-                }
+                require_once('Crypt/Hash.php');
 
                 $i = 1;
                 while (strlen($key) < $this->key_size) { // $dkLen == $this->key_size

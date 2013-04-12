@@ -57,9 +57,7 @@
 /**
  * Include Crypt_DES
  */
-if (!class_exists('Crypt_DES')) {
-    require_once('DES.php');
-}
+require_once('DES.php');
 
 /**
  * Encrypt / decrypt using inner chaining
@@ -394,9 +392,7 @@ class Crypt_TripleDES {
                     $count = 1000;
                 }
 
-                if (!class_exists('Crypt_Hash')) {
-                    require_once('Crypt/Hash.php');
-                }
+                require_once('Crypt/Hash.php');
 
                 $i = 1;
                 while (strlen($key) < 24) { // $dkLen == 24
