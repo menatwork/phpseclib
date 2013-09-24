@@ -1,18 +1,18 @@
 {
 	"name":"menatwork/phpseclib",
-	"description":"PHP Secure Communications Library for Contao",
-	"keywords":["security", "encryption", "aes"],
-	"type":"contao-library",
+	"description":"PHP secure communications library for Contao",
+	"keywords":["security","encryption","aes"],
+	"type":"contao-module",
 	"license":"MIT",
 	"authors":[
 		{
-			"name": "Jim Wigginton",
-			"email": "terrafrost@php.net",
-			"role": "Original developer"
+			"name":"Jim Wigginton",
+			"email":"terrafrost@php.net",
+			"role":"Developer"
 		},
 		{
 			"name":"Stefan Heimes",
-			"email":"heimes@men-at-work.de",
+			"email":"contao@men-at-work.de",
 			"homepage":"http://www.men-at-work.de",
 			"role":"Developer"
 		}
@@ -20,10 +20,13 @@
 	"require":{
 		"php:":">=5.0.0"
 	},
+	"autoload":{
+		"classmap":["system/"]
+	},
 	"extra":{
-		"contao": {
-			"symlinks":{
-				"system/modules/phpseclib": "system/modules/phpseclib"
+		"contao":{
+			"sources":{
+				"system/modules/phpseclib":"system/modules/phpseclib"
 			}
 		}
 	}
